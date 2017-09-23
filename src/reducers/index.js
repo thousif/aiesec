@@ -1,9 +1,7 @@
 import { combineReducers } from "redux"
 
-import login from "./loginReducer"
-import promo from "./promoReducer"
-import notifier from "./notifier"
+import reducer from "./Reducer"
 
 export default combineReducers({
-  login,promo,notifier
+  reducer
 })
