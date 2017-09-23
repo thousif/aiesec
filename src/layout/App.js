@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import { Button } from 'antd'
 import './App.css'
+import { fetchOpportunities } from "../actions/Actions"
 import { connect } from 'react-redux'
 import { Layout, Menu, Icon, notification } from 'antd'
 const { Sider, Content } = Layout;
 
 @connect((store) => {
   console.log(store);
-  return {  };
+  return { 
+    data : store.reducer
+  };
 })
 
 class App extends Component {
@@ -16,30 +19,21 @@ class App extends Component {
     console.log(this.props);
   }
 
-  state = {
-    collapsed: false,
-  };
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
+  componentWillMount(){
+    console.log("component mounted");
+    this.props.dispatch(fetchOpportunities());
   }
 
   componentWillReceiveProps(nextProps){
-    
+    console.log(nextProps);
   }
+
 
   render() {
     return (
         <div >
       	<Layout style={{minHeight : '100vh'}}>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={this.state.collapsed}
-        >
-          <div className="logo" />
-        </Sider>
+        
         <Layout>
         </Layout>
       </Layout>
